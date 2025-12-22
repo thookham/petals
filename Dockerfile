@@ -1,31 +1,22 @@
-FROM nvcr.io/nvidia/cuda:11.0.3-cudnn8-devel-ubuntu20.04
-LABEL maintainer="bigscience-workshop"
-LABEL repository="petals"
+# Use PyTorch base image as Petals requires it
+FROM pytorch/pytorch:2.1.0-cuda12.1-cudnn8-runtime
 
-WORKDIR /home
-# Set en_US.UTF-8 locale by default
-RUN echo "LC_ALL=en_US.UTF-8" >> /etc/environment
+WORKDIR /app
 
-# Install packages
-RUN apt-get update && apt-get install -y --no-install-recommends \
-  build-essential \
-  wget \
-  git \
-  && apt-get clean autoclean && rm -rf /var/lib/apt/lists/{apt,dpkg,cache,log} /tmp/* /var/tmp/*
+# Install git and other system dependencies
+RUN apt-get update && apt-get install -y \
+    git \
+    build-essential \
+    && rm -rf /var/lib/apt/lists/*
 
-RUN wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh -O install_miniconda.sh && \
-  bash install_miniconda.sh -b -p /opt/conda && rm install_miniconda.sh
-ENV PATH="/opt/conda/bin:${PATH}"
+# Copy local code (if any) or prepare for volume mount
+COPY . /app
 
-RUN conda install python~=3.10.12 pip && \
-    pip install --no-cache-dir "torch>=1.12" && \
-    conda clean --all && rm -rf ~/.cache/pip
+# Install dependencies if requirements.txt exists
+RUN if [ -f requirements.txt ]; then pip install --no-cache-dir -r requirements.txt; fi
 
-VOLUME /cache
-ENV PETALS_CACHE=/cache
+# Install petals if not present (as a fallback/demo)
+# RUN pip install petals
 
-COPY . petals/
-RUN pip install --no-cache-dir -e petals
-
-WORKDIR /home/petals/
-CMD bash
+# Default command
+CMD ["python3"]
