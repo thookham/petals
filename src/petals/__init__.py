@@ -8,6 +8,13 @@ if platform.system() == "Darwin":
     os.environ.setdefault("no_proxy", "*")
     os.environ.setdefault("OBJC_DISABLE_INITIALIZE_FORK_SAFETY", "YES")
 
+if platform.system() == "Windows":
+    raise ImportError(
+        "Petals does not support native Windows due to its dependency on 'uvloop' (strictly *nix).\n"
+        "Please use WSL2 (Windows Subsystem for Linux) or a Linux container.\n"
+        "See: https://learn.microsoft.com/en-us/windows/wsl/install"
+    )
+
 import hivemind
 import transformers
 from packaging import version

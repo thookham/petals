@@ -19,7 +19,7 @@
 ### 1. Installation (Windows Users)
 
 > [!URGENT]
-> **WSL / Linux Required**: Petals relies on `uvloop`, which does **not** support native Windows.
+> **WSL / Linux Required**: Petals depends on `hivemind`, which uses `uvloop`. `uvloop` is an event loop replacement for asyncio that does **not** support Windows; it is strictly for *nix systems. Trying to run it natively on Windows fails.
 > You **MUST** use [WSL2 (Windows Subsystem for Linux)](https://learn.microsoft.com/en-us/windows/wsl/install) or a Linux container.
 
 **In WSL (Ubuntu 22.04+):**
