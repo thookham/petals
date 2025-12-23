@@ -8,6 +8,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- **Simulation**: Added `SCAFFOLD/experiments/swarm_sim.py` to verify DHT routing and fault-tolerance logic.
+- **Documentation**: Updated `SCAFFOLD/NOTES.md` with architecture deep dive.
+
 - Added Docker configuration (Dockerfile, docker-compose.yml) for containerized development.
 - Feature X for performance optimization.
 
