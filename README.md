@@ -23,6 +23,12 @@ Provide a high-level overview of the system design.
 
 * List version requirements e.g. Node.js >= 18.x
 
+### 🖥️ Windows Users
+
+> [!IMPORTANT]
+> **WSL Necessary**: This project relies on `uvloop` (via `hivemind`), which is **not supported on native Windows**.
+> For a plug-and-play experience, you **MUST** use [WSL (Windows Subsystem for Linux)](https://learn.microsoft.com/en-us/windows/wsl/install).
+
 ### Installation
 
 ```bash
