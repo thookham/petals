@@ -5,9 +5,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 
-## [2.3.0.dev2-antigravity] - 2025-12-21
+## [2.3.0.dev2-antigravity] - 2025-12-23
 ### Added
-- **WSL Enforcement**: Added runtime check to prevent `uvloop` crashes on native Windows.
+- **WSL Enforcement**: Added runtime `ImportError` in `__init__.py` to fail fast on native Windows.
+- **Verification**: Added `verify_petals.py` to CI/dev scripts to ensure platform checks work correctly.
 - **Docs**: Updated README with strict WSL/Linux requirements.
 
 ### Fixed
