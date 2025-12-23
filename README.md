@@ -10,7 +10,7 @@
 
 > [!NOTE]
 > **Antigravity Hydrated Fork**
-> This repository is a verified hydration of the original Petals codebase. It includes additional verification tools (`SCAFFOLD/`) to simulate swarm behavior and verify routing logic without requiring a full GPU cluster.
+> This repository is a verified hydration of the original Petals codebase. It is configured for standard swarm inference.
 
 ---
 
@@ -19,7 +19,7 @@
 ### 1. Installation (Windows Users)
 
 > [!URGENT]
-> **WSL / Linux Required**: Petals depends on `hivemind`, which uses `uvloop`. `uvloop` is an event loop replacement for asyncio that does **not** support Windows; it is strictly for *nix systems. Trying to run it natively on Windows fails.
+> **WSL / Linux Required**: Petals relies on `uvloop`, which does **not** support native Windows.
 > You **MUST** use [WSL2 (Windows Subsystem for Linux)](https://learn.microsoft.com/en-us/windows/wsl/install) or a Linux container.
 
 **In WSL (Ubuntu 22.04+):**
@@ -28,32 +28,34 @@
 pip install petals
 ```
 
-### 2. Verification (Simulated Swarm)
+### 2. Basic Usage
 
-To understand how Petals routes requests across the DHT (Distributed Hash Table) without needing a GPU:
+Run a distributed inference session:
 
-```bash
-# Verify installation
-python SCAFFOLD/experiments/check_install.py
+```python
+from petals import AutoDistributedModelForCausalLM
+from transformers import AutoTokenizer
 
-# Run Swarm Simulation (Pure Python)
-python SCAFFOLD/experiments/swarm_sim.py
+model_name = "petals-team/StableBeluga2"
+tokenizer = AutoTokenizer.from_pretrained(model_name)
+model = AutoDistributedModelForCausalLM.from_pretrained(model_name)
+
+inputs = tokenizer("A cat sat on a mat", return_tensors="pt")["input_ids"]
+outputs = model.generate(inputs, max_new_tokens=5)
+print(tokenizer.decode(outputs[0]))
 ```
-
-This script simulates nodes joining a swarm, storing routing information, and retrieving it—validating the core P2P logic.
 
 ## 🛠️ Development
 
 ### Contributing
 
 We welcome contributions! Please see [CONTRIBUTING.md](CONTRIBUTING.md) for details.
-**Windows Developers**: Use the `SCAFFOLD/` simulations to verify logic changes if you cannot run a full node locally.
 
 ### Key Features
 
 - **collaborative inference**: Run 70B+ models on a desktop.
 - **Fault Tolerance**: Automatic recovery if nodes drop out.
-- **Privacy**: Inputs are processed by multiple peers; no single peer sees the whole context (in some configurations).
+- **Privacy**: Inputs are processed by multiple peers.
 
 ## 📚 Documentation
 
