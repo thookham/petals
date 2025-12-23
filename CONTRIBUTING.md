@@ -9,6 +9,12 @@ We are building a decentralized future for AI. Join the swarm!
 **Using Windows?** You MUST use [WSL2](https://learn.microsoft.com/en-us/windows/wsl/install) or Linux.
 Native Windows is **not supported** due to `uvloop` dependencies.
 
+**Verify Your Environment**:
+Before starting, run this script to confirm your environment is ready:
+```bash
+python3 verify_petals.py
+```
+
 ### 2. Antigravity Verification (Simulation)
 
 If you cannot run a full GPU node, verify your logic changes using the **Antigravity Simulation**:
