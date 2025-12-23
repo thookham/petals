@@ -1,21 +1,40 @@
-# Contributing to this Project
+# Contributing to Petals
 
-We love your input! We want to make contributing to this project as easy and transparent as possible, whether it's:
+We are building a decentralized future for AI. Join the swarm!
 
-- Reporting a bug
-- Discussing the current state of the code
-- Submitting a fix
-- Proposing new features
-- Becoming a maintainer
+## 🚀 Getting Started
 
-## We Use [Github Flow](https://guides.github.com/introduction/flow/index.html), So All Code Changes Happen Through Pull Requests
+### 1. Windows Limitation
 
-1. Fork the repo and create your branch from main.
-2. If you've added code that should be tested, add tests.
-3. If you've changed APIs, update the documentation.
-4. Ensure the test suite passes.
-5. Make sure your code lints.
-6. Issue that pull request!
+**Using Windows?** You MUST use [WSL2](https://learn.microsoft.com/en-us/windows/wsl/install) or Linux.
+Native Windows is **not supported** due to `uvloop` dependencies.
 
-## License
-By contributing, you agree that your contributions will be licensed under its existing License.
+### 2. Antigravity Verification (Simulation)
+
+If you cannot run a full GPU node, verify your logic changes using the **Antigravity Simulation**:
+
+- **Script**: `SCAFFOLD/experiments/swarm_sim.py`
+- **Purpose**: Validates DHT routing, peer discovery, and failover logic in pure Python.
+
+### 3. Submission Process
+
+1. **Fork** the repository.
+2. Create a **feature branch** (e.g., `feat/new-routing-algo`).
+3. **Commit** your changes.
+4. **Push** to your fork and submit a **Pull Request**.
+
+### 4. Code Style
+
+- We use `black` and `isort` for Python formatting.
+- Run `make style` (inside WSL/Linux) before committing.
+
+## 🧪 Testing
+
+- Run `pytest` to execute the full test suite (requires Linux/WSL).
+- Check `SCAFFOLD/experiments/check_install.py` to verify dependencies.
+
+## 🤝 Community Guidelines
+
+- Be kind and respectful.
+- Use GitHub Issues for bug reports.
+- Join our [Discord](https://discord.gg/petals) for real-time discussion.
